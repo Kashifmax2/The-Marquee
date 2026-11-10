@@ -55,11 +55,16 @@ const NAV = [
   ["about", "About"]
 ];
 
-function head({ title, desc, type = "website", jsonld = null }) {
+function head({ title, desc, type = "website", jsonld = null, verify = false }) {
   return `<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+${
+  verify
+    ? `<meta name="8456a5afda69844282de104441312d689ddfa44c" content="8456a5afda69844282de104441312d689ddfa44c" />
+`
+    : ""
+}<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -173,9 +178,9 @@ const railAd = (slot, size) => `<div class="ad" hidden>
         </div>
       </div>`;
 
-const adExtras = `<div class="ad-slot ad-slot-hidden" data-slot="native"></div>
-<div class="ad-slot ad-slot-hidden" data-slot="pop"></div>
-<div class="ad-slot ad-slot-hidden" data-slot="social"></div>
+const adExtras = `<div class="ad-slot ad-slot-page" data-slot="native" aria-hidden="true"></div>
+<div class="ad-slot ad-slot-page" data-slot="social" aria-hidden="true"></div>
+<div class="ad-slot ad-slot-page" data-slot="pop" aria-hidden="true"></div>
 <div class="anchor" id="anchor-ad" hidden>
   <button class="anchor__close" id="anchor-close" type="button" aria-label="Close advertisement">&#215;</button>
   <div class="anchor__inner">
@@ -278,7 +283,8 @@ function pageHome() {
   return `${head({
     title: "The Marquee — Film, television and the people who make them",
     desc: "Independent reviews, rewatches and reporting on film and television: the craft, the business and the arguments worth having.",
-    jsonld
+    jsonld,
+    verify: true
   })}
 <body>
 ${header("home")}

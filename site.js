@@ -128,6 +128,13 @@
       return;
     }
 
+    /* Page-level formats place their own fixed elements, so they are
+       injected straight into the document instead of an iframe. */
+    if (slot.classList.contains("ad-slot-page")) {
+      addDirect(slot, code);
+      return;
+    }
+
     if (!hidden) showBand(slot);
 
     if (hidden) {
@@ -188,12 +195,21 @@
   }
 
   function boot() {
-    /* Hidden slots run first so click-triggered formats are ready. */
+    /* Page-level formats load straight away: they are fixed overlays and
+       must not wait for a scroll that may never come. */
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".ad-slot-page[data-slot]"),
+      mount
+    );
+
+    /* Hidden slots run next so click-triggered formats are ready. */
     var hidden = document.querySelectorAll(".ad-slot-hidden[data-slot]");
     Array.prototype.forEach.call(hidden, mount);
 
     var visible = Array.prototype.slice.call(
-      document.querySelectorAll(".ad-slot[data-slot]:not(.ad-slot-hidden)")
+      document.querySelectorAll(
+        ".ad-slot[data-slot]:not(.ad-slot-hidden):not(.ad-slot-page)"
+      )
     );
 
     visible.forEach(function (slot) {
