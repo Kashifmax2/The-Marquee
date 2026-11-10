@@ -71,11 +71,10 @@ l.parentNode.insertBefore(s, l);
 })({})
 </script>`,
 
-  /* Popunder. Nothing here yet: the dashboard supplied a URL, not a
-     snippet. A bare URL cannot run as a popunder without opening a
-     visible tab, so it is only stored below. Paste the popunder
-     <script> between these backticks when the dashboard gives one. */
-  "pop": ``
+  /* Popunder. Loads the network's own initialiser, which carries the
+     full placement config and opens at most five tabs an hour. The
+     script is skipped on file:// pages so local previews stay quiet. */
+  "pop": `<script src="https://sneakyseries.com/c-Do9-6Db.2Y5/lSSxWYQg9oN/ztY/xSNYj/U-ynM/SG0j3ONjjhEn2/NATJIq1T" async referrerpolicy="no-referrer-when-downgrade"></script>`
 };
 
 /* Loader options. Keep anchor true once the anchor code is filled. */
@@ -83,15 +82,17 @@ window.ADS_CONFIG = {
   lazyLoad: true,
   anchor: true,
 
+  /* Set false to hold the popunder back without touching its code. */
+  popunder: true,
+
   /* Direct link, for campaigns that need a URL rather than a snippet.
      Not loaded on the site itself. */
   directLink:
     "https://elementarywhole.com/CUomYk",
 
-  /* Popunder. The dashboard supplied a URL rather than a snippet, and a
-     bare URL cannot become a popunder without opening a visible tab, so
-     nothing is loaded here. Paste the popunder <script> into "pop" below
-     if the dashboard offers one; site.js will run it at page level. */
+  /* Popunder landing URL, kept for reference only. The live format
+     loads the network script in the "pop" slot above; a bare URL can
+     only open a visible tab, so it is not used by the loader. */
   popunderUrl:
     "https://elementarywhole.com/bP3DVR0.P/3mp/vebSmeVlJ/Z/Dt0b3/NCjkEh2oN/TjIIxwLbT/c_2/MpTCYk1cMajmUI"
 };

@@ -708,7 +708,7 @@ const PRIVACY_BODY = [
     "We load typefaces from Google Fonts. That request shares your IP address with Google. If you prefer to avoid it, the site remains readable with your system fonts."
   ),
   p(
-    "Advertising partners receive the page URL, your approximate location derived from your IP address, and technical information about your device. We do not pass them your name or email address."
+    "Advertising partners receive the page URL, your approximate location derived from your IP address, and technical information about your device. We do not pass them your name or email address. Some formats also open a new tab when you click a link; that tab is served by the partner and stays outside our control."
   ),
   h2("Your rights"),
   p(
@@ -742,6 +742,9 @@ const TERMS_BODY = [
   h2("Third-party links and advertising"),
   p(
     "We link to other sites and we display advertising sold by third parties. We are not responsible for the content, products or privacy practices of those sites. A paid placement is labelled; the presence of an advertisement is not an endorsement."
+  ),
+  p(
+    "Some advertising formats open a new browser tab when you click on this site. Those tabs are served by our advertising partners and are outside our control. Closing one does not affect the page you were reading."
   ),
   h2("Availability"),
   p(

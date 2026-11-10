@@ -14,7 +14,7 @@
   "use strict";
 
   var config = Object.assign(
-    { lazyLoad: true, anchor: true },
+    { lazyLoad: true, anchor: true, popunder: true },
     window.ADS_CONFIG || {}
   );
   var codes = window.AD_CODES || {};
@@ -197,9 +197,17 @@
   function boot() {
     /* Page-level formats load straight away: they are fixed overlays and
        must not wait for a scroll that may never come. */
+    var localPreview = location.protocol === "file:";
     Array.prototype.forEach.call(
       document.querySelectorAll(".ad-slot-page[data-slot]"),
-      mount
+      function (slot) {
+        /* The popunder opens tabs on click, which is wrong for a local
+           preview or an automated screenshot run. */
+        if (slot.getAttribute("data-slot") === "pop") {
+          if (localPreview || !config.popunder) return;
+        }
+        mount(slot);
+      }
     );
 
     /* Hidden slots run next so click-triggered formats are ready. */

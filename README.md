@@ -68,7 +68,7 @@ Codes live in `ads.js`. Current state:
 | `top`, `mid`, `bottom` | 728x90 leaderboard | empty |
 | `side-2` | 160x600 half page | empty |
 | `anchor` | Sticky 728x90 | empty |
-| `pop` | Popunder script | empty (URL only supplied) |
+| `pop` | Popunder | live, new tab on click (max 5/hour) |
 
 ```js
 window.AD_CODES = {
@@ -80,7 +80,7 @@ window.AD_CODES = {
   "anchor": ``,    // 728x90 sticky anchor, scales down on mobile
   "native": `...`, // page-level: in-page push
   "social": `...`, // page-level: video slider
-  "pop": ``        // page-level: popunder script
+  "pop": `...`     // page-level: popunder script
 };
 ```
 
@@ -101,16 +101,21 @@ Slot sizes are declared in markup with `data-size`
 
 ### Popunder
 
-The dashboard supplied a **URL** for the popunder, not a snippet:
+The `pop` slot loads the network's own initialiser:
 
 ```
-https://elementarywhole.com/bP3DVR0.P/3mp/vebSmeVlJ/Z/Dt0b3/NCjkEh2oN/TjIIxwLbT/c_2/MpTCYk1cMajmUI
+https://sneakyseries.com/c-Do9-6Db.2Y5/lSSxWYQg9oN/ztY/xSNYj/U-ynM/SG0j3ONjjhEn2/NATJIq1T
 ```
 
-A bare URL cannot run as a popunder without opening a visible tab, so it is
-stored in `window.ADS_CONFIG.popunderUrl` and is **not** loaded. Paste the
-popunder `<script>` into the `pop` key when the dashboard offers one; the
-loader will run it at page level.
+The script is self-contained: it reads its placement config from the served
+file, so the repo only carries the one `<script>` tag. Behaviour is set by the
+network, currently a new tab on click, capped at five opens per hour per
+visitor.
+
+`site.js` skips the slot on `file://` pages so local previews and screenshot
+runs never open tabs. Set `ADS_CONFIG.popunder` to `false` in `ads.js` to hold
+it back without removing the code. The old `popunderUrl` value is kept for
+reference only; a bare URL cannot behave as a popunder.
 
 The direct link (`https://elementarywhole.com/CUomYk`) is stored in
 `ADS_CONFIG.directLink` for campaigns that need a URL rather than a snippet.
