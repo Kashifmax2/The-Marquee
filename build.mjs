@@ -303,7 +303,6 @@ ${header("home")}
         <p class="byline">By ${lead.byline} · ${lead.date} · ${lead.read}</p>
       </div>
       <aside class="lead__rail" aria-label="The latest">
-        ${railAd("inline-1", "rectangle")}
         <h2 class="rail__title">The latest</h2>
         <ul class="briefs">
         ${latest}
@@ -325,7 +324,7 @@ ${header("home")}
     </div>
   </section>
 
-  ${adBand("mid", "leaderboard")}
+  ${adBand("inline-1", "rectangle")}
 
   <section class="band band--paper">
     <div class="wrap">
