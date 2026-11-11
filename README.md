@@ -128,6 +128,12 @@ The direct link (`https://elementarywhole.com/CUomYk`) is stored in
 `build.mjs` (`verify: true` on the home page only), so rebuilding the site
 does not drop it.
 
+### Canonical and sitemap
+
+`build.mjs` writes `SITE_URL` into every page as `canonical` and `og:url`, and
+generates `sitemap.xml` plus the `Sitemap:` line in `robots.txt`. Change
+`SITE_URL` in one place if the site moves to a custom domain.
+
 ### Going live with a new network
 
 1. Create the zones at the sizes above.

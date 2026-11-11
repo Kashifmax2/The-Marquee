@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 import { ARTICLES } from "./content.mjs";
 
 const OUT = dirname(fileURLToPath(import.meta.url));
+const SITE_URL = "https://the-marquee-indol.vercel.app";
 const ISSUE = "Issue 04";
 const DATE = "Wednesday 11 November 2026";
 
@@ -968,12 +969,34 @@ for (const a of ARTICLES) {
 }
 
 for (const [file, html] of pages) {
-  writeFileSync(join(OUT, file), html, "utf8");
+  const url = SITE_URL + "/" + (file === "index.html" ? "" : file);
+  const withUrl = html.replace(
+    '<meta property="og:site_name" content="The Marquee">',
+    '<meta property="og:site_name" content="The Marquee">\n' +
+      `<meta property="og:url" content="${url}">\n` +
+      `<link rel="canonical" href="${url}">`
+  );
+  writeFileSync(join(OUT, file), withUrl, "utf8");
 }
 
 writeFileSync(
+  join(OUT, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages
+  .map(([file]) => {
+    const url = SITE_URL + "/" + (file === "index.html" ? "" : file);
+    return `  <url><loc>${url}</loc></url>`;
+  })
+  .join("\n")}
+</urlset>
+`,
+  "utf8"
+);
+
+writeFileSync(
   join(OUT, "robots.txt"),
-  "User-agent: *\nAllow: /\n",
+  `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
   "utf8"
 );
 

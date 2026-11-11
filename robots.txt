@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://the-marquee-indol.vercel.app/sitemap.xml
