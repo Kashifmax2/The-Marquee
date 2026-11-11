@@ -37,6 +37,20 @@ l.parentNode.insertBefore(s, l);
 })({})
 </script>`,
 
+  /* 300x250 MultiTag banner, top of the rail and section pages. */
+  "inline-1": `<script>
+(function(noewh){
+var d = document,
+    s = d.createElement('script'),
+    l = d.currentScript || d.scripts[d.scripts.length - 1];
+s.settings = noewh || {};
+s.src = "\/\/conventionalresponse.com\/bLX.VasDdQGMlu0\/YMW-cQ\/YeLmp9WuVZ\/U-lSkFPvTjc\/2eMwTIYO1BMUD\/UjtONRz\/YPxcNbj\/Upw\/OAQk";
+s.async = true;
+s.referrerPolicy = 'no-referrer-when-downgrade';
+l.parentNode.insertBefore(s, l);
+})({})
+</script>`,
+
   /* 160x600 half page. Empty. */
   "side-2": ``,
 

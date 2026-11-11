@@ -302,6 +302,7 @@ ${header("home")}
         <p class="byline">By ${lead.byline} · ${lead.date} · ${lead.read}</p>
       </div>
       <aside class="lead__rail" aria-label="The latest">
+        ${railAd("inline-1", "rectangle")}
         <h2 class="rail__title">The latest</h2>
         <ul class="briefs">
         ${latest}
@@ -403,6 +404,8 @@ ${header(key)}
 
   ${feature}
 
+  ${adBand("inline-1", "rectangle")}
+
   <section class="band">
     <div class="wrap">
       <div class="cards cards--3">
@@ -440,7 +443,7 @@ function pageArticle(a) {
   const adBlock = `<div class="ad" hidden>
         <div class="ad__inner">
           <p class="ad__label">Advertisement</p>
-          <div class="ad-slot" data-slot="mid" data-size="leaderboard"></div>
+          <div class="ad-slot" data-slot="inline-1" data-size="rectangle"></div>
         </div>
       </div>`;
   body.splice(Math.min(4, body.length), 0, adBlock);

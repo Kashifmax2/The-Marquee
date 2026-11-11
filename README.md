@@ -63,6 +63,7 @@ Codes live in `ads.js`. Current state:
 | Key | Format | Status |
 | --- | --- | --- |
 | `side-1` | 300x250 banner | live (article rail, home rail) |
+| `inline-1` | 300x250 MultiTag banner | live (home rail top, article body, section pages) |
 | `native` | In-page push | live, every page |
 | `social` | Video slider | live, every page |
 | `top`, `mid`, `bottom` | 728x90 leaderboard | empty |
@@ -75,6 +76,7 @@ window.AD_CODES = {
   "top": ``,       // 728x90 leaderboard, above the lead story
   "mid": ``,       // 728x90 leaderboard, between home bands / mid-article
   "side-1": `...`, // 300x250 rectangle, article rail
+  "inline-1": `...`, // 300x250 MultiTag, home rail top / article body / section pages
   "side-2": ``,    // 160x600 half page, article rail
   "bottom": ``,    // 728x90 leaderboard, above the footer
   "anchor": ``,    // 728x90 sticky anchor, scales down on mobile

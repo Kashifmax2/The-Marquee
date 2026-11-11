@@ -930,7 +930,7 @@ hr {
   align-items: center;
   width: 100%;
   overflow: hidden;
-  background: var(--paper);
+  background: transparent;
 }
 
 .ad-slot iframe { display: block; border: 0; max-width: none; }
